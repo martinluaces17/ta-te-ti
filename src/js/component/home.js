@@ -1,29 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 
 //include images into your bundle
 import rigoImage from "../../img/rigo-baby.jpg";
 
 //create your first component
-export function Home() {
+export function Home(props) {
+	const [game, setGame] = useState([
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" ",
+		" "
+	]);
+
+	const [player, setPlayer] = useState("X");
+
+	const marcar = i => {
+		let cambioTurno = false;
+		let newGame = game.map((e, index) => {
+			if (i == index && e == " ") {
+				cambioTurno = true;
+				return player;
+			} else return e;
+		});
+		if (cambioTurno) {
+			player === "X" ? setPlayer("O") : setPlayer("X");
+		}
+
+		setGame(newGame);
+	};
 	return (
-		<div>
-			<h1>Ta-Te-Ti</h1>
-			<div className="container">
-				<div className="row">
-					<button className="col-4 col1"></button>
-					<button className="col-4 col2"></button>
-					<button className="col-4 col3"></button>
-				</div>
-				<div className="row">
-					<button className="col-4 col4"></button>
-					<button className="col-4 col5"></button>
-					<button className="col-4 col6"></button>
-				</div>
-				<div className="row">
-					<button className="col-4 col7"></button>
-					<button className="col-4 col8"></button>
-					<button className="col-4 col9"></button>
-				</div>
+		<div className="container-fluid content">
+			<div className="row">
+				{game.map((e, i) => {
+					return (
+						<div
+							key={i}
+							className="col-4 tic-box border"
+							onClick={() => {
+								marcar(i);
+							}}>
+							<p>{e}</p>
+						</div>
+					);
+				})}
 			</div>
 		</div>
 	);
