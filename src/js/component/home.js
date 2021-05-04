@@ -23,7 +23,7 @@ export function Home(props) {
 	useEffect(() => {
 		validarGanador();
 		if (winner != "") {
-			alert("winner is: " + winner);
+			alert("El ganador es: " + winner);
 		}
 	});
 
@@ -46,7 +46,7 @@ export function Home(props) {
 				setWinner(game[i]);
 			}
 		}
-		for (let i = 0; i < game.length; i = i + 2) {
+		for (let i = 2; i < game.length; i = i + 3) {
 			if (
 				game[i] != " " &&
 				game[i] == game[i + 2] &&
@@ -84,6 +84,7 @@ export function Home(props) {
 		<div className="container-fluid content">
 			<div className="text-center">
 				<h1>Ta-Te-Ti</h1>
+				<h3>{alert}</h3>
 			</div>
 			<div className="row">
 				{game.map((e, i) => {
