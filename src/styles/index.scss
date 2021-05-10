@@ -1,16 +1,22 @@
 @import "~bootstrap/scss/bootstrap.scss";
 
+body {
+    background: rgb(82, 6, 88);
+    background: linear-gradient(90deg, rgb(145, 2, 2) 0%, rgb(183, 196, 183) 63%, 
+    rgb(136, 2, 42) 100%);
+}
 .content{
   padding: .4vw;
   margin: auto;
-  width: 450px;
+  width: 700px;
 }
 .tic-box{
   font-size: 100px;
-  background: gray;
+  background: -webkit-linear-gradient(90deg, yellow 10%, orange 90%);
   text-align: center;
   color: lavender;
   height: 150px;
+  float: right;
 }
 
 .row{
@@ -20,4 +26,16 @@
 }
 .tic-box:hover{
   background-color: lightslategrey;
+}
+
+.sidebar{
+    border-radius: 10%;
+    margin-top: 70px;
+    margin-right: 20px;
+    background: green;
+    width: 200px;
+    float: left;
+    height: 300px;
+    padding: 20px;
+    box-shadow: 10px 10px 5px black;
 }

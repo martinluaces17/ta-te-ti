@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+import { func } from "prop-types";
 
-//create your first component
 export function Home(props) {
 	const [game, setGame] = useState([
 		" ",
@@ -19,13 +17,23 @@ export function Home(props) {
 
 	const [player, setPlayer] = useState("X");
 	const [winner, setWinner] = useState("");
+	const [playerOne, setPlayerOne] = useState("");
+	const [playerTwo, setPlayerTwo] = useState("");
+	const [playerList, setPlayerList] = useState([]);
 
 	useEffect(() => {
 		validarGanador();
-		if (winner != "") {
-			alert("El ganador es: " + winner);
+		if (winner == "X") {
+			alert("El ganador es: " + playerList[0]);
+		} else if (winner == "O") {
+			alert("El ganador es: " + playerList[1]);
 		}
 	});
+
+	const names = e => {
+		e.preventDefault();
+		setPlayerList([playerOne, playerTwo]);
+	};
 
 	function validarGanador() {
 		for (let i = 0; i < game.length; i = i + 3) {
@@ -86,6 +94,40 @@ export function Home(props) {
 				<h1>Ta-Te-Ti</h1>
 				<h3>{alert}</h3>
 			</div>
+			<div className="sidebar">
+				<h4 className="text-center">Choose your weapon</h4>
+				<div className="text-center">
+					<form
+						className="form justify-content-center"
+						onSubmit={names}>
+						<div className="form-group mx-sm-3 mb-2">
+							<i className="fas fa-times"></i>
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Ingrese su nombre"
+								onChange={e => setPlayerOne(e.target.value)}
+								value={playerOne}
+							/>
+						</div>
+
+						<div className="form-group mx-sm-3 mb-2">
+							<i className="far fa-circle" />
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Ingrese su nombre"
+								onChange={e => setPlayerTwo(e.target.value)}
+								value={playerTwo}
+							/>
+						</div>
+						<button type="submit" className="btn btn-success mt-3">
+							Comenzar!
+						</button>
+					</form>
+				</div>
+			</div>
+
 			<div className="row">
 				{game.map((e, i) => {
 					return (
